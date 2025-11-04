@@ -1,12 +1,8 @@
-#include <iostream>
-#include <string>
+#include "main.h"
 
 int main()
 {
-    std::cout << "Hello World" << std::endl;
+    print_fonction("Hello World");
     return 0;
 }
 
-void print_fonction(string mot){
-    std::count << mot << std::endl;
-}
