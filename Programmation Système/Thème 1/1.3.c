@@ -7,7 +7,7 @@ int main(int argc, char const *argv[])
     char chaine[]="abracadabra";
     int i;
     while (chaine[i]!='\0'){
-        printf("%", chaine[i]);
+        printf("%c", chaine[i]);
         i++;
     }
     return 0;
