@@ -3,12 +3,14 @@
 #define SEARCHINGALGORITHM_H
 
 class SearchingAlgorithm{
+    private:
+        int totalComparisons;
+        int numberComparisons;
+        int totalSearch;
+        int averageComparisons;
     public:
         SearchingAlgorithm() {};
-        void numberComparaisons();
-        void totalComparaisons();
-        void totalSearch();
-        void averageComparisons();
+        SearchingAlgorithm(int _totalComparisons, int _numberComparisons, int _totalSearch, int _averageComparisons);
         virtual void search(int);
         void displaySearchResults(std::ostream&, int, int);
         void LinearSearch();
