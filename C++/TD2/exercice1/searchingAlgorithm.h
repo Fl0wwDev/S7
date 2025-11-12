@@ -4,19 +4,15 @@
 
 class SearchingAlgorithm{
     private:
-        int totalComparisons;
-        int numberComparisons;
-        int totalSearch;
-        int averageComparisons;
-    public:
-        SearchingAlgorithm() {};
-        SearchingAlgorithm(int _totalComparisons, int _numberComparisons, int _totalSearch, int _averageComparisons);
-        virtual void search(int) = 0;
-        void displaySearchResults(std::ostream&, int, int);
-        void LinearSearch();
-        void JumpSearch();
-        void BiarySearch();
-};
 
+    public:
+        static int totalComparisons;
+        static int totalSearch;
+        static int averageComparisons;
+        int numberComparisons;
+        SearchingAlgorithm() {};
+        virtual int search(const std::vector<int>&, int target) = 0;
+        void displaySearchResults(std::ostream&, int, int);
+};
 
 #endif
