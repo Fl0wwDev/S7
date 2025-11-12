@@ -6,3 +6,5 @@ SearchingAlgorithm::SearchingAlgorithm(int _totalComparisons, int _numberCompari
     totalComparisons = _totalSearch;
     averageComparisons = _averageComparisons;
 }
+
+SearchingAlgorithm::search()

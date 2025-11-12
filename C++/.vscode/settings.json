@@ -9,6 +9,8 @@
         "locale": "cpp",
         "optional": "cpp",
         "ratio": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "istream": "cpp",
+        "streambuf": "cpp"
     }
 }
