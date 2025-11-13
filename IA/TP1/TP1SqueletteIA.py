@@ -25,6 +25,9 @@ class Node:
         self.parent = parent
         self.road_to_parent = road_to_parent
 
+    def __lt__(self, other):
+        return self.cost < other.cost
+
 
 class Town:
 
@@ -67,8 +70,23 @@ def greedy_search(start_town, end_town):
 
 # Parcours à coût uniforme
 def ucs(start_town, end_town):
-    # À remplir !
-    return None
+    q = PriorityQueue()
+    visited = set() #ville visités
+    start_node = Node(cost=0, town=start_town)
+    q.put(start_node)
+    visited.add(start_town)
+    while not q.empty():
+        current = q.get()
+
+        if current.town == end_town:
+            return current #s'arrête
+
+        for neighbour, road in current.town.neighbours.items():
+            if neighbour not in visited:
+                visited.add(neighbour)
+                child = Node (cost= current.cost + road.distance, town= neighbour, parent= current, road_to_parent=road)
+                q.put(child)
+
 
 # Parcours en profondeur itératif
 def dfs_iter(start_town, end_town):
