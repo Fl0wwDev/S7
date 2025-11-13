@@ -72,23 +72,37 @@ def ucs(start_town, end_town):
 
 # Parcours en profondeur itératif
 def dfs_iter(start_town, end_town):
-    maxsize = 1
-    q = LifoQueue(maxsize)
-    visited = set() #ville visités
-    start_node = Node(cost=0, town=start_town)
-    q.put(start_node)
-    visited.add(start_town)
-    while not q.empty():
-        current = q.get()
-        if current.town == end_town:
-            return current #s'arrête
-
-        for neighbour, road in current.town.neighbours.items():
-            if neighbour not in visited:
-                visited.add(neighbour)
-                child = Node (cost= current.cost + road.distance, town= neighbour, parent= current, road_to_parent=road)
-                q.put(child)
-                print("La queue :", q, "la taille", q.qsize())
+    max_depth = 0
+    while True:
+        max_depth += 1
+        print(f"Recherche avec profondeur maximale: {max_depth}")
+        
+        q = LifoQueue()
+        visited = set()
+        start_node = Node(cost=0, town=start_town)
+        q.put((start_node, 0))
+        
+        while not q.empty():
+            current, depth = q.get()
+            
+            if current.town in visited:
+                continue
+            visited.add(current.town)
+            
+            if current.town == end_town:
+                return current
+            
+            if depth < max_depth:
+                for neighbour, road in current.town.neighbours.items():
+                    if neighbour not in visited:
+                        child = Node(cost=current.cost + road.distance, 
+                                   town=neighbour, 
+                                   parent=current, 
+                                   road_to_parent=road)
+                        q.put((child, depth + 1))
+        
+        if len(visited) == len(towns):
+            return None
 
 # Parcours en profondeur
 def dfs(start_town, end_town):
