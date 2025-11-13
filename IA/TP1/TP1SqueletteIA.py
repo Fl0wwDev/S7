@@ -78,19 +78,17 @@ def dfs_iter(start_town, end_town):
     start_node = Node(cost=0, town=start_town)
     q.put(start_node)
     visited.add(start_town)
-    if q.full():
-        maxsize +=1
-        while not q.empty():
-            current = q.get()
-            if current.town == end_town:
-                return current #s'arrête
+    while not q.empty():
+        current = q.get()
+        if current.town == end_town:
+            return current #s'arrête
 
-            for neighbour, road in current.town.neighbours.items():
-                if neighbour not in visited:
-                    visited.add(neighbour)
-                    child = Node (cost= current.cost + road.distance, town= neighbour, parent= current, road_to_parent=road)
-                    q.put(child)
-                    print("La queue :", q, "la taille", q.qsize())
+        for neighbour, road in current.town.neighbours.items():
+            if neighbour not in visited:
+                visited.add(neighbour)
+                child = Node (cost= current.cost + road.distance, town= neighbour, parent= current, road_to_parent=road)
+                q.put(child)
+                print("La queue :", q, "la taille", q.qsize())
 
 # Parcours en profondeur
 def dfs(start_town, end_town):
