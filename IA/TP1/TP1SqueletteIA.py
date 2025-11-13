@@ -55,7 +55,7 @@ def get_distance(town1, town2):
 
 # Distance vol d'oiseau
 def crowfliesdistance(town1, town2):
-    R = 6371  # Rayon de la Terre en km
+    R = 6371
     lat1, lon1 = math.radians(town1.latitude), math.radians(town1.longitude)
     lat2, lon2 = math.radians(town2.latitude), math.radians(town2.longitude)
     
