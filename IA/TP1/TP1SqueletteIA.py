@@ -69,7 +69,41 @@ def crowfliesdistance(town1, town2):
 
 # A-Star
 def a_star(start_town, end_town):
-    # À remplir !
+    q = PriorityQueue()
+    visited = set()
+    
+    # Tracker pour les coûts g(n) réels
+    g_costs = {start_town: 0}
+    
+    # f(n) = g(n) + h(n)
+    start_node = Node(cost=0 + crowfliesdistance(start_town, end_town), town=start_town)
+    q.put(start_node)
+    
+    while not q.empty():
+        current = q.get()
+        
+        if current.town in visited:
+            continue
+        visited.add(current.town)
+        
+        if current.town == end_town:
+            return current
+        
+        for neighbour, road in current.town.neighbours.items():
+            if neighbour not in visited:
+                # g(n) = coût réel depuis départ (comme UCS)
+                g_cost = g_costs[current.town] + road.distance
+                
+                # h(n) = heuristique (comme Glouton)
+                h_cost = crowfliesdistance(neighbour, end_town)
+                
+                # f(n) = g(n) + h(n)
+                f_cost = g_cost + h_cost
+                
+                g_costs[neighbour] = g_cost
+                child = Node(cost=f_cost, town=neighbour, parent=current, road_to_parent=road)
+                q.put(child)
+    
     return None
 
 # Recherche gloutonne
