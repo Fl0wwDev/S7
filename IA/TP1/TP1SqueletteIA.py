@@ -55,8 +55,17 @@ def get_distance(town1, town2):
 
 # Distance vol d'oiseau
 def crowfliesdistance(town1, town2):
-    # À remplir !
-    return 0
+    R = 6371  # Rayon de la Terre en km
+    lat1, lon1 = math.radians(town1.latitude), math.radians(town1.longitude)
+    lat2, lon2 = math.radians(town2.latitude), math.radians(town2.longitude)
+    
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    
+    a = math.sin(dlat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2)**2
+    c = 2 * math.asin(math.sqrt(a))
+    
+    return R * c
 
 # A-Star
 def a_star(start_town, end_town):
@@ -65,7 +74,27 @@ def a_star(start_town, end_town):
 
 # Recherche gloutonne
 def greedy_search(start_town, end_town):
-    # À remplir !
+    q = PriorityQueue()
+    visited = set()
+    start_node = Node(cost=crowfliesdistance(start_town, end_town), town=start_town)
+    q.put(start_node)
+    
+    while not q.empty():
+        current = q.get()
+        
+        if current.town in visited:
+            continue
+        visited.add(current.town)
+        
+        if current.town == end_town:
+            return current
+        
+        for neighbour, road in current.town.neighbours.items():
+            if neighbour not in visited:
+                heuristic = crowfliesdistance(neighbour, end_town)
+                child = Node(cost=heuristic, town=neighbour, parent=current, road_to_parent=road)
+                q.put(child)
+    
     return None
 
 # Parcours à coût uniforme
