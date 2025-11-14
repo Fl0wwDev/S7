@@ -1,5 +1,10 @@
 #include "searchingAlgorithm.h"
 
+// Initialisation des variables statiques
+int SearchingAlgorithm::totalComparisons = 0;
+int SearchingAlgorithm::totalSearch = 0;
+int SearchingAlgorithm::averageComparisons = 0;
+
 void SearchingAlgorithm::displaySearchResults(std::ostream &os, int results, int target) {
     totalComparisons += numberComparisons;
     totalSearch++;

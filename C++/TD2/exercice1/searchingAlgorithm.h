@@ -1,6 +1,8 @@
-#include <ostream>
 #ifndef SEARCHINGALGORITHM_H
 #define SEARCHINGALGORITHM_H
+
+#include <ostream>
+#include <vector>
 
 class SearchingAlgorithm{
     public:

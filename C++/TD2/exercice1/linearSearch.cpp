@@ -1,4 +1,5 @@
 #include "linearSearch.h"
+#include <string>
 
 LinearSearch::LinearSearch() : SearchingAlgorithm() {
     numberComparisons = 0;
@@ -12,6 +13,7 @@ int LinearSearch::search(const std::vector<int>& elements, int target) {
         if (elements[i] == target) {
             return i;
         }
+
     }
     
     return -1;
