@@ -7,7 +7,6 @@
 template <typename T>
 class MatrixNumerical : public MatrixBase<T> {
 public:
-    // Constructeurs
     MatrixNumerical();
     MatrixNumerical(std::size_t r, std::size_t c);
     MatrixNumerical(std::size_t r, std::size_t c, const T& initValue);
