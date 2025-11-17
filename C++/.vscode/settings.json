@@ -41,6 +41,7 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "__split_buffer": "cpp",
-        "execution": "cpp"
+        "execution": "cpp",
+        "map": "cpp"
     }
 }
