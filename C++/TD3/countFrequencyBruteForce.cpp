@@ -1,9 +1,24 @@
 #include <iostream>
+#include <vector>
 #include "countFrequencyBruteForce.h"
 using namespace std;
 
-void countFrenquencyBruteForce(const vector<int>& numbers) {
-}
-countFrequencyBruteForce::countFrequencyBruteForce()
-{
+void countFrequencyBruteForce(const vector<int>& numbers) {
+    vector<int> visited(numbers.size(), 0);
+    
+    for (size_t i = 0; i < numbers.size(); ++i) {
+        if (visited[i] == 1) {
+            continue;
+        }
+        
+        int count = 1;
+        for (size_t j = i + 1; j < numbers.size(); ++j) {
+            if (numbers[i] == numbers[j]) {
+                count++;
+                visited[j] = 1;
+            }
+        }
+        
+        cout << numbers[i] << ": " << count << " times" << endl;
+    }
 }
