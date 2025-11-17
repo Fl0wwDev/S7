@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include "countFrequencyBruteForce.h"
+#include "countFrequencyOptimal.h"
+
 
 using namespace std;
 
