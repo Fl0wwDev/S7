@@ -6,18 +6,23 @@
 using namespace std;
 
 bool isPalindrome(const string& input) {
-    int left = 0;
-    int right = input.length() - 1;
+    queue<char> q;
+    stack<char> s;
     
-    while (left < right) {
-        if (input[left] != input[right]) {
-            return false;
-        }
-        left++;
-        right--;
+    for (char c : input) {
+        q.push(c);
+        s.push(c);
     }
     
-    return true;;
+    while (!q.empty()) {
+        if (q.front() != s.top()) {
+            return false;
+        }
+        q.pop();
+        s.pop();
+    }
+    
+    return true;
 }
 
 
