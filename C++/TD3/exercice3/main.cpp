@@ -17,7 +17,7 @@ bool isPalindrome(const string& input) {
         right--;
     }
     
-    return true;
+    return true;;
 }
 
 
