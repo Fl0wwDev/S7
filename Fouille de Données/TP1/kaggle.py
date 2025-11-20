@@ -27,7 +27,8 @@ plt.title("Distribution des types de Pokémon (Type 1 vs Type 2)")
 plt.ylabel("Nombre de Pokémon")
 plt.xlabel("Type")
 plt.tight_layout()
-plt.show()
+plt.show(block=False)
+
 
 df_full = frame.copy()
 df_full['Legendary_map'] = df_full['Legendary'].map({True: 'Legendary', False: 'Non-Legendary'})
@@ -39,7 +40,7 @@ for i,c in enumerate(cols):
     g.set_axis_labels("Total", c)
     g.map(sns.scatterplot, 'Total', c)
     g.add_legend()
-    plt.show()
+    plt.show(block=False)
     
 
 max_total = df_full['Total'].max()
@@ -54,3 +55,7 @@ pokemon_min = df_full.loc[df_full['Total'] == min_total, 'Name'].values
 print(f"\nLe Pokémon avec le moins de stats sont:")
 for name in pokemon_min:
     print(f"  - {name}")
+
+
+plt.pause(2)
+input("appuyez pour stop")
