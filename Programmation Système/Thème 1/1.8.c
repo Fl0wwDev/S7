@@ -25,7 +25,7 @@ int main() {
     char saisie[20];
     int trouve = 0;
     
-    printf("met numero mois");
+    printf("met mois");
     scanf("%s", saisie);
     
     for (int i = 0; i < 12; i++) {
