@@ -61,10 +61,6 @@ for name in pokemon_min:
 plt.pause(2)
 input("appuyez pour stop")
 
-print("\n" + "="*60)
-print("CLASSIFICATION DES POKÉMON LÉGENDAIRES")
-print("="*60)
-
 features = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed', 'Total', 'Generation']
 X = df_full[features].values
 y = df_full['Legendary'].values
