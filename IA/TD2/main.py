@@ -10,6 +10,9 @@ def update_q_table(Q, s, a, r, sprime, alpha, gamma):
     the reward, the next state sprime, alpha the learning rate and gamma the discount factor.
     Return the same input Q but updated for the pair s and a.
     """
+    # Q-learning update rule: Q(s,a) = Q(s,a) + alpha * (r + gamma * max(Q(s',a')) - Q(s,a))
+    Q[s, a] = Q[s, a] + alpha * (r + gamma * np.max(Q[sprime, :]) - Q[s, a])
+    return Q
 
 
 def epsilon_greedy(Q, s, epsilone):
@@ -18,6 +21,12 @@ def epsilon_greedy(Q, s, epsilone):
     Takes as unput the Q function for all states, a state s, and epsilon.
     It should return the action to take following the epsilon greedy algorithm.
     """
+    if np.random.uniform(0, 1) < epsilone:
+        # Explore: choose a random action
+        return np.random.randint(0, Q.shape[1])
+    else:
+        # Exploit: choose the best action based on Q-table
+        return np.argmax(Q[s, :])
 
 
 if __name__ == "__main__":
@@ -55,6 +64,10 @@ if __name__ == "__main__":
             )
 
             # Update state and put a stoping criteria
+            S = Sprime
+            
+            if done:
+                break
 
         print("episode #", e, " : r = ", r)
 
@@ -63,6 +76,13 @@ if __name__ == "__main__":
     print("Average reward = ", np.mean(rewards))
 
     # plot the rewards in function of epochs
+    plt.figure(figsize=(10, 6))
+    plt.plot(rewards)
+    plt.xlabel('Episode')
+    plt.ylabel('Total Reward')
+    plt.title('Reward per Episode during Q-Learning Training')
+    plt.grid(True)
+    plt.show()
 
     print("Training finished.\n")
 
@@ -72,5 +92,29 @@ if __name__ == "__main__":
     Evaluate the q-learning algorihtm
     
     """
+    
+    # Evaluate the trained agent
+    n_eval_episodes = 10
+    eval_rewards = []
+    
+    print("Evaluating the trained agent...")
+    for episode in range(n_eval_episodes):
+        S, _ = env.reset()
+        total_reward = 0
+        done = False
+        steps = 0
+        
+        while not done and steps < max_itr_per_epoch:
+            # Use greedy policy (no exploration)
+            A = np.argmax(Q[S, :])
+            S, R, done, _, _ = env.step(A)
+            total_reward += R
+            steps += 1
+        
+        eval_rewards.append(total_reward)
+        print(f"Evaluation episode {episode + 1}: Total reward = {total_reward}, Steps = {steps}")
+    
+    print(f"\nAverage evaluation reward over {n_eval_episodes} episodes: {np.mean(eval_rewards):.2f}")
+    print(f"Standard deviation: {np.std(eval_rewards):.2f}")
 
     env.close()
