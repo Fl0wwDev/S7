@@ -39,7 +39,7 @@ class GradientDescent:
         """
         
         point = initial_point
-        for _ in range(self.max_iterations):
+        for i in range(self.max_iterations):
             gradient_value = self.gradient(point)
             point = self.update(point, gradient_value)
         return point
