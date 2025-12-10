@@ -1,3 +1,4 @@
+#chargement donnée
 txt = open("data.csv").read()
 
 def load():
@@ -5,9 +6,17 @@ def load():
 
 
 csv = map(lambda x: x.split(","), txt.split("\n"))
-print(list(csv))
+text2 = "\n".join(map(lambda x: ",".join(x), csv))
+
+#ensemble
+
+if "ensisa" in txt:
+    print("ok")
 
 
-txt.join(',')
+s1 = {1,2,3}
+s2 = {3,4,5}
 
-print(csv)
+print(s1.intersection(s2))
+print(s1.difference(s2))
+print(s1.union(s2))
