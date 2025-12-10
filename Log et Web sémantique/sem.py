@@ -14,9 +14,22 @@ if "ensisa" in txt:
     print("ok")
 
 
-s1 = {1,2,3}
-s2 = {3,4,5}
+s1 = [1,2,3]
+s2 = [3,4,5]
+s3 = []
 
-print(s1.intersection(s2))
-print(s1.difference(s2))
-print(s1.union(s2))
+def intersect():
+    for e in s1:
+        if e in s2:
+            s3 += [e]
+    return s3
+
+def difference():
+    r = []
+    for e in s1:
+        if not (e in s2):
+            r += [e]
+    return r 
+
+def union():
+    return 
