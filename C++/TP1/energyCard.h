@@ -11,6 +11,9 @@ class EnergyCard : public Card {
         string energyType;
     public:
         EnergyCard();
+        EnergyCard(string _energyType, string _cardName);
+        void setEnergyType(string);
+        string getEnergyType() const;
 };
 
 
