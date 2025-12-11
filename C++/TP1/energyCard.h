@@ -5,5 +5,13 @@
 #include <string>
 #include "card.h"
 
+class EnergyCard : public Card {
+    private:
+        string cardName = "Energy";
+        string energyType;
+    public:
+        EnergyCard();
+};
+
 
 #endif
