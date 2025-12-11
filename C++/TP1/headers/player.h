@@ -13,6 +13,8 @@ using namespace std;
 class Player {
     private:
         string playerName;
+        vector<Card*> benchCards;
+        vector<PokemonCard*> ActionCards;
 };
 
 #endif
