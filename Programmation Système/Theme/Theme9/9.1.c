@@ -6,7 +6,7 @@
 
 static int counter = 0;
 
-void signal_handler(int signal){
+void display_signal(int signal){
     counter++;
     printf("signal numéro %d\n", counter);
     
@@ -17,10 +17,9 @@ void signal_handler(int signal){
 
 }
 
-
 int main(int argc, char const *argv[])
 {
-    signal(SIGINT, signal_handler);
+    signal(SIGINT, display_signal);
 
     while (1){
         getchar();
