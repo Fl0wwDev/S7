@@ -22,7 +22,6 @@ int main(void) {
         exit(EXIT_FAILURE);
     }
     
-    // Fork the process
     pid = fork();
     if (pid == -1) {
         perror("fork");

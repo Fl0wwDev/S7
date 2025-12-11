@@ -1,0 +1,89 @@
+# FRADIN Mahé
+
+#chargement donnée
+txt = open("data.csv").read()
+
+def load():
+    return txt
+
+
+csv = map(lambda x: x.split(","), txt.split("\n"))
+text2 = "\n".join(map(lambda x: ",".join(x), csv))
+
+#ensemble
+
+if "ensisa" in txt:
+    print("ok")
+
+
+s1 = [1,2,3]
+s2 = [3,4,5]
+s3 = []
+
+def intersect():
+    for e in s1:
+        if e in s2:
+            s3 += [e]
+    return s3
+
+def difference():
+    r = []
+    for e in s1:
+        if not (e in s2):
+            r += [e]
+    return r 
+
+def union():
+    return 
+
+txt = map(lambda x: x.split(" "), load("data.txt").split("."))
+sup = ["is","at","the", "\n"]
+
+db = []
+
+
+def map_ensemble(f, ensemble):
+    return [f(element) for element in ensemble]
+
+prefix = "http://sem.org#"
+
+
+s1 = {"bob", "studies", "ensisa"}
+s2 = {"ensisa", "located", "mulhouse"}
+fail = []
+ret = lambda x: [x]
+
+def prefixe(x):
+    x = f"http://sem.org#{x}"
+    return x
+
+def rem_prefixe(x):
+    x = x.replace("http://sem.org#", "")
+    return x
+
+def ensemblef(f, ensemble):
+    return list(map(lambda x: f(x), ensemble))
+
+def concat(t):
+    r = []
+    for e in t:
+        r+= e
+    return r
+
+def filter(p, t):
+    return concat(map(lambda e: ret(e) if p(e) else fail, t))
+
+res = ensemblef(add_prefixe, s1)
+print(res)
+res = ensemblef(remove_prefixe, res)
+print(res)
+
+db = [['bob', 'studies', 'ensisa'], ['ensisa', 'located', 'mulhouse']]
+print(filter(lambda x: x[0]=="bob", db))
+print([x for x in db if x[0]=="bob"])
+
+
+
+db += [[x[0], "rdf:type", "Person"] for x in db if x[1]=="studies"]
+db += [[x[1], "owl:Class", "Person"] for x in db if x[1]=="bob"]
+db += [[x[1], "owl:DataType", "Person"] for x in db if x[1]=="ensisa"]
