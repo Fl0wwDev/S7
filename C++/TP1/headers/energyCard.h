@@ -1,5 +1,5 @@
-#ifndef ENERGIYCARD_H
-#define ENERGIYCARD_H
+#ifndef ENERGY_CARD_H
+#define ENERGY_CARD_H
 
 #include <iostream>
 #include <string>
@@ -10,7 +10,7 @@ class EnergyCard : public Card {
         string energyType;
     public:
         EnergyCard();
-        explicit EnergyCard(const string& _energyType);
+        EnergyCard(const string& _energyType);
         EnergyCard(const string& _energyType, const string& _cardName);
 
         void setEnergyType(const string&);

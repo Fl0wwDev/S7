@@ -30,7 +30,7 @@ int main()
     
     player2.addCardToBench(new EnergyCard("Grass"));
     player2.addCardToBench(new TrainerCard("Brock", "heal all your action pokemon"));
-    player2.addCardToBench(new PokemonCard("Bulbasaur", "Grass", "Bulbasaur", 1, 100, 2, "Leach Seed", 15, 3, "Vine Whip", 25));
+    player2.addCardToBench(new PokemonCard("Bulbasaur", "Grass", "Bulbasaur", 1, 100, 2, "Leech Seed", 15, 3, "Vine Whip", 25));
     
     player2.activatePokemonCard(2);
     player2.attachEnergyCard(0, 0);

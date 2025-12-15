@@ -1,9 +1,16 @@
 #include "headers/trainerCard.h"
 
-TrainerCard::TrainerCard() : Card("Trainer"), trainerEffect("") {}
+TrainerCard::TrainerCard()
+{
+    cardName = "Trainer";
+    trainerEffect = "";
+}
 
 TrainerCard::TrainerCard(const string& _cardName, const string& _effect)
-    : Card(_cardName), trainerEffect(_effect) {}
+{
+    cardName = _cardName;
+    trainerEffect = _effect;
+}
 
 void TrainerCard::setTrainerEffect(const string& _effect)
 {

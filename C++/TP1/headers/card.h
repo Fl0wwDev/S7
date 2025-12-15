@@ -11,9 +11,9 @@ class Card {
         string cardName;
 
     public:
-        Card() = default;
-        explicit Card(const string& name) : cardName(name) {}
-        virtual ~Card() = default;
+        Card() {}
+        Card(const string& name) : cardName(name) {}
+        virtual ~Card() {}
 
         string getCardName() const { return cardName; }
         virtual void displayInfo() = 0;

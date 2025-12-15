@@ -1,8 +1,14 @@
 #include "headers/pokemonCard.h"
 
 PokemonCard::PokemonCard()
-    : Card(""), pokemonType(""), familyName(""), evolutionLevel(0), maxHP(0), HP(0), energyAttached(0)
 {
+    cardName = "";
+    pokemonType = "";
+    familyName = "";
+    evolutionLevel = 0;
+    maxHP = 0;
+    HP = 0;
+    energyAttached = 0;
 }
 
 PokemonCard::PokemonCard(const string& _cardName,
@@ -16,16 +22,26 @@ PokemonCard::PokemonCard(const string& _cardName,
                          int attack2Cost,
                          const string& attack2Desc,
                          int attack2Damage)
-    : Card(_cardName),
-      pokemonType(_pokemonType),
-      familyName(_familyName),
-      evolutionLevel(_evolutionLevel),
-      maxHP(_maxHP),
-      HP(_maxHP),
-      energyAttached(0)
 {
-    attacks.push_back({attack1Cost, attack1Desc, attack1Damage});
-    attacks.push_back({attack2Cost, attack2Desc, attack2Damage});
+    cardName = _cardName;
+    pokemonType = _pokemonType;
+    familyName = _familyName;
+    evolutionLevel = _evolutionLevel;
+    maxHP = _maxHP;
+    HP = _maxHP;
+    energyAttached = 0;
+
+    Attack firstAttack;
+    firstAttack.cost = attack1Cost;
+    firstAttack.description = attack1Desc;
+    firstAttack.damage = attack1Damage;
+    attacks.push_back(firstAttack);
+
+    Attack secondAttack;
+    secondAttack.cost = attack2Cost;
+    secondAttack.description = attack2Desc;
+    secondAttack.damage = attack2Damage;
+    attacks.push_back(secondAttack);
 }
 
 void PokemonCard::addEnergy(int amount)
@@ -97,5 +113,9 @@ void PokemonCard::displayInfo()
         if (i + 1 < attacks.size()) {
             cout << "\n";
         }
+    }
+
+    if (attacks.size() == 2) {
+        cout << "\nOnly 2 attacks exist." << endl;
     }
 }
