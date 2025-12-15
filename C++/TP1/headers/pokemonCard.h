@@ -5,7 +5,14 @@
 #include <string>
 #include "card.h"
 #include <vector>
+
 using namespace std;
+
+struct Attack {
+    int cost;
+    string description;
+    int damage;
+};
 
 class PokemonCard : public Card {
     private:
@@ -14,34 +21,33 @@ class PokemonCard : public Card {
         int evolutionLevel;
         int maxHP;
         int HP;
-        vector<tuple<int, int, string, int>> attacks;
-        int energyCost;
-        int energy;
-        string attackDescription;
-        int damage;
+        vector<Attack> attacks;
+        int energyAttached;
     public:
         PokemonCard();
-        PokemonCard(string _pokemonType, string _familyName, int _evolutionLevel, int _maxHP, int _HP, vector<tuple<int, int, string, int>> _attacks, int _energyCost, int _energy, int _attackDescription, int _damage);
-        void setPokemonType(string);
-        void setFamilyName(string);
-        void setEvolutionLevel(int);
-        void setMaxHP(int);
-        void setHP(int);
-        void setAttacks(vector<tuple<int, int, string, int>>);
-        void setEnergyCost(int);
-        void setEnergy(int);
-        void setAttackDescription(string);
-        void setDamage(int);
+        PokemonCard(const string& _cardName,
+                    const string& _pokemonType,
+                    const string& _familyName,
+                    int _evolutionLevel,
+                    int _maxHP,
+                    int attack1Cost,
+                    const string& attack1Desc,
+                    int attack1Damage,
+                    int attack2Cost,
+                    const string& attack2Desc,
+                    int attack2Damage);
+
+        void addEnergy(int amount = 1);
+        int getEnergyAttached() const;
+        const vector<Attack>& getAttacks() const;
         string getPokemonType() const;
         string getFamilyName() const;
         int getEvolutionLevel() const;
         int getMaxHP() const;
         int getHP() const;
-        vector<tuple<int, int, string, int>> getAttacks() const;
-        int getEnergyCost() const;
-        int getEnergy() const;
-        string getAttackDescription() const;
-        int getDamage() const;
+        void reduceHP(int amount);
+        void healToMax();
+        void displayInfo() override;
 };
 
 #endif

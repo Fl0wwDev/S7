@@ -1,22 +1,23 @@
-#include "trainerCard.h"
+#include "headers/trainerCard.h"
 
-TrainerCard::TrainerCard()
+TrainerCard::TrainerCard() : Card("Trainer"), trainerEffect("") {}
+
+TrainerCard::TrainerCard(const string& _cardName, const string& _effect)
+    : Card(_cardName), trainerEffect(_effect) {}
+
+void TrainerCard::setTrainerEffect(const string& _effect)
 {
+    trainerEffect = _effect;
 }
 
-TrainerCard::TrainerCard(string _trainerType, string _cardName)
-{
-    trainerEffect = _trainerType;
-    cardName = _cardName;
-}
-
-void TrainerCard::setTrainerType(string _trainerType)
-{
-    trainerEffect = _trainerType;
-}
-
-string TrainerCard::getTrainerType() const
+string TrainerCard::getTrainerEffect() const
 {
     return trainerEffect;
+}
+
+void TrainerCard::displayInfo()
+{
+    cout << "Trainer Card - Name: " << cardName
+         << ", Effect: " << trainerEffect << endl;
 }
 

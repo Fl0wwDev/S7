@@ -1,80 +1,101 @@
-#include "pokemonCard.h"
+#include "headers/pokemonCard.h"
 
 PokemonCard::PokemonCard()
+    : Card(""), pokemonType(""), familyName(""), evolutionLevel(0), maxHP(0), HP(0), energyAttached(0)
 {
 }
 
-PokemonCard::PokemonCard(string _pokemonType, string _familyName, int _evolutionLevel, int _maxHP, int _HP, vector<tuple<int, int, string, int>> _attacks, int _energyCost, int _energy, int _attackDescription, int _damage)
+PokemonCard::PokemonCard(const string& _cardName,
+                         const string& _pokemonType,
+                         const string& _familyName,
+                         int _evolutionLevel,
+                         int _maxHP,
+                         int attack1Cost,
+                         const string& attack1Desc,
+                         int attack1Damage,
+                         int attack2Cost,
+                         const string& attack2Desc,
+                         int attack2Damage)
+    : Card(_cardName),
+      pokemonType(_pokemonType),
+      familyName(_familyName),
+      evolutionLevel(_evolutionLevel),
+      maxHP(_maxHP),
+      HP(_maxHP),
+      energyAttached(0)
 {
-    pokemonType = _pokemonType;
-    familyName = _familyName;
-    evolutionLevel = _evolutionLevel;
-    maxHP = _maxHP;
-    HP = _HP;
-    attacks = _attacks;
-    energyCost = _energyCost;
-    energy = _energy;
-    attackDescription = _attackDescription;
-    damage = _damage;
+    attacks.push_back({attack1Cost, attack1Desc, attack1Damage});
+    attacks.push_back({attack2Cost, attack2Desc, attack2Damage});
 }
 
-void PokemonCard::setPokemonType(string _pokemonType){
-    pokemonType = _pokemonType;
-}; 
-void PokemonCard::setFamilyName(string _familyName){
-    familyName = _familyName;
-};
-void PokemonCard::setEvolutionLevel(int _evolutionLevel){
-    evolutionLevel = _evolutionLevel;
-};
-void PokemonCard::setMaxHP(int _maxHP){
-    maxHP = _maxHP;
-};
-void PokemonCard::setHP(int _HP){
-    HP = _HP;
-};
-void PokemonCard::setAttacks(vector<tuple<int, int, string, int>> _attacks){
-    attacks = _attacks;
-};
-void PokemonCard::setEnergyCost(int _energyCost){
-    energyCost = _energyCost;
-};
-void PokemonCard::setEnergy(int _energy){
-    energy = _energy;
-};
-void PokemonCard::setAttackDescription(string _attackDescription){ 
-    attackDescription = _attackDescription;
-};
-void PokemonCard::setDamage(int _damage){
-    damage = _damage;
-};  
-string PokemonCard::getPokemonType() const{
-    return pokemonType;
-};
-string PokemonCard::getFamilyName() const{
-    return familyName;
-};
-int PokemonCard::getEvolutionLevel() const{
-    return evolutionLevel;
-};
-int PokemonCard::getMaxHP() const{
-    return maxHP;
-};
-int PokemonCard::getHP() const{
-    return HP;
-};
-vector<tuple<int, int, string, int>> PokemonCard::getAttacks() const{
+void PokemonCard::addEnergy(int amount)
+{
+    energyAttached += amount;
+}
+
+int PokemonCard::getEnergyAttached() const
+{
+    return energyAttached;
+}
+
+const vector<Attack>& PokemonCard::getAttacks() const
+{
     return attacks;
-};
-int PokemonCard::getEnergyCost() const{
-    return energyCost;
-};
-int PokemonCard::getEnergy() const{
-    return energy;
-};
-string PokemonCard::getAttackDescription() const{
-    return attackDescription;
-};
-int PokemonCard::getDamage() const{
-    return damage;
-};
+}
+
+string PokemonCard::getPokemonType() const
+{
+    return pokemonType;
+}
+
+string PokemonCard::getFamilyName() const
+{
+    return familyName;
+}
+
+int PokemonCard::getEvolutionLevel() const
+{
+    return evolutionLevel;
+}
+
+int PokemonCard::getMaxHP() const
+{
+    return maxHP;
+}
+
+int PokemonCard::getHP() const
+{
+    return HP;
+}
+
+void PokemonCard::reduceHP(int amount)
+{
+    HP -= amount;
+    if (HP < 0) HP = 0;
+}
+
+void PokemonCard::healToMax()
+{
+    HP = maxHP;
+}
+
+void PokemonCard::displayInfo()
+{
+    cout << "Pokemon Card - Name: " << cardName
+         << ", Type: " << pokemonType
+         << ", Evolution Level: " << evolutionLevel
+         << " of the family \"" << familyName << "\""
+         << ", HP: " << HP << endl;
+
+    cout << "\nAttacks:" << endl;
+    for (size_t i = 0; i < attacks.size(); ++i) {
+        cout << "Attack #" << i << ":" << endl;
+        cout << "Attack cost: " << attacks[i].cost << endl;
+        cout << "Attack current energy storage: " << energyAttached << endl;
+        cout << "Attack description: " << attacks[i].description << endl;
+        cout << "Attack damage: " << attacks[i].damage << endl;
+        if (i + 1 < attacks.size()) {
+            cout << "\n";
+        }
+    }
+}

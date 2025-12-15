@@ -1,5 +1,5 @@
 #ifndef ENERGIYCARD_H
-#define ENERGYCARD_H
+#define ENERGIYCARD_H
 
 #include <iostream>
 #include <string>
@@ -7,13 +7,15 @@
 
 class EnergyCard : public Card {
     private:
-        string cardName = "Energy";
         string energyType;
     public:
         EnergyCard();
-        EnergyCard(string _energyType, string _cardName);
-        void setEnergyType(string);
+        explicit EnergyCard(const string& _energyType);
+        EnergyCard(const string& _energyType, const string& _cardName);
+
+        void setEnergyType(const string&);
         string getEnergyType() const;
+        void displayInfo() override;
 };
 
 
