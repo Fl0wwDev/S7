@@ -3,6 +3,7 @@
 #include "headers/router.h"
 #include "headers/server.h"
 #include "headers/switch.h"
+#include "headers/knnDouble.h"
 using namespace std;
 
 int main() {
@@ -82,17 +83,37 @@ int main() {
     }
     cout << endl;
 
-    //test de removeDeviceByHostname
-    cout << "test de removeDeviceByHostname" << endl;
-    infra.removeDeviceByHostname("le switch de Mahé");
-    cout << endl;
-
-
-    //test printInfo
+    //test printInfo avant suppression
     cout << "test de printInfo" << endl;
     router1->printInfo();
     server1->printInfo();
     switch1->printInfo();
     cout << endl;
+
+    //test de removeDeviceByHostname
+    cout << "test de removeDeviceByHostname" << endl;
+    infra.removeDeviceByHostname("le switch de Mahé");
+    cout << endl;
+
+    //test KNNDouble
+    cout << "test KNNDouble" << endl;
+    KNNDouble knn(3);
+
+    // equipement inconnu
+    NetworkDevice* unknown = new NetworkDevice();
+    unknown->setHostname("device inconnu");
+    unknown->setPowerConsumption(4);// proche du switch1/server1
+    unknown->setYear(2021);
+
+    //construire les voisins et afficher les k plus proches
+    vector<int> neighbors = knn.findNearestNeighbors(infra.getDevices(), unknown);
+    cout << "k plus proches voisins (" << neighbors.size() << ") :" << endl;
+    for (int idx : neighbors) {
+        cout << " - " << infra.getDevices()[idx]->getHostname() << " (" 
+             << infra.getDevices()[idx]->getPowerConsumption() << " W, "
+             << infra.getDevices()[idx]->getYear() << ")" << endl;
+    }
+
+    delete unknown; //on nettoie
     return 0;
 }

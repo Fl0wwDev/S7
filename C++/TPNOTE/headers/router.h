@@ -7,7 +7,7 @@
 using namespace std;
 class Router : public NetworkDevice {
 private:
-    int routingTableSize;
+    int routingTableSize; //nb de route
 public:
     Router();
     Router(int _routingTableSize);
