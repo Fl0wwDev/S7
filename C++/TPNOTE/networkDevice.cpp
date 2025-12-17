@@ -1,4 +1,5 @@
 #include "headers/networkDevice.h"
+#include "networkDevice.h"
 
 NetworkDevice::NetworkDevice()
 {
@@ -16,7 +17,17 @@ NetworkDevice::NetworkDevice(string _hostname, string _ipAddress, string _locati
     isCritical = _isCritical;
 }
 
-
+NetworkDevice::NetworkDevice(const NetworkDevice &other)
+{
+    hostname = other.hostname;
+    ipAddress = other.ipAddress;
+    location = other.location;
+    vendor = other.vendor;
+    osVersion = other.osVersion;
+    year = other.year;
+    powerConsumption = other.powerConsumption;
+    isCritical = other.isCritical;
+}
 // les getters
 string NetworkDevice::getHostname() const {
     return hostname;
