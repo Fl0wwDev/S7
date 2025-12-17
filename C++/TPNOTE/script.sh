@@ -1,0 +1,1 @@
+ g++ main.cpp networkDevice.cpp networkInfrastructure.cpp router.cpp server.cpp switch.cpp -o  main

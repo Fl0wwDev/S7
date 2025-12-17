@@ -70,15 +70,15 @@ int main() {
     cout << "Consommation moyenne: " << avgPower << " W" << endl;
     cout << endl;
 
-    //test de refus de doublon - essayer d'ajouter un équipement avec un hostname existant
+    //test de refus de doublon
     cout << "test de refus de doublon" << endl;
     Server* duplicate = new Server(8);
-    duplicate->setHostname("le server de Mahé");  //lême hostname que server1
+    duplicate->setHostname("le server de Mahé");  //même hostname que server1
     
     bool added = infra.addDevice(duplicate);
     if (!added) {
-        cout << "✓ Doublon correctement refusé" << endl;
-        delete duplicate;  // Libérer la mémoire
+        cout << "doublon bien réfusé on supprime pour libérer de la mémoire" << endl;
+        delete duplicate;  //libérer la mémoire
     }
     cout << endl;
 
