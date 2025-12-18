@@ -1,7 +1,8 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <pthread.h>
 
-# define MAX 10
+# define MAX 10 //nb de thread
 void * fonction ( void * arg )
 {
 printf ( " % d \ n " , * ( int *) arg ) ;
