@@ -2,7 +2,6 @@
 #define TIME_SERIES_GENERATOR_H
 
 #include <vector>
-#include <iostream>
 
 using namespace std;
 
@@ -12,12 +11,14 @@ private:
 
 public:
     TimeSeriesGenerator();
-
     TimeSeriesGenerator(int _seed);
 
-    virtual vector<double> generateTimeSeries(int) = 0;
+    virtual vector<double> generateTimeSeries(int size) = 0;
 
-    static void printTimeSerie(const vector<double>&);
+    static void printTimeSerie(const vector<double>& series);
+
+    // Getter
+    int getSeed() const;
 };
 
 #endif

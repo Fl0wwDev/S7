@@ -1,4 +1,4 @@
-#include "stepGenerator.h"
+#include "headers/stepGenerator.h"
 
 StepGenerator::StepGenerator(int seed)
     : TimeSeriesGenerator(seed),
@@ -21,9 +21,9 @@ vector<double> StepGenerator::generateTimeSeries(int size) {
         if (probDist(generator) < 0.5) {
             currentValue = static_cast<double>(valueDist(generator));
         }
-        
         series.push_back(currentValue);
     }
     
     return series;
 }
+
